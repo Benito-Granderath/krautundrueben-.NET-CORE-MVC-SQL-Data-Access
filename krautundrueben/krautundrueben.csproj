@@ -1,0 +1,154 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\fonts\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\fonts\**" />
+    <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\fonts\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\fonts\**" />
+    <None Remove="wwwroot\images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
+    <Content Remove="C:\Users\b.granderath\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\.DS_Store" />
+    <None Remove="wwwroot\assets\.DS_Store" />
+    <None Remove="wwwroot\assets\css\.DS_Store" />
+    <None Remove="wwwroot\assets\css\animate.css" />
+    <None Remove="wwwroot\assets\css\bootstrap.min.css" />
+    <None Remove="wwwroot\assets\css\lineicons.css" />
+    <None Remove="wwwroot\assets\css\main.css" />
+    <None Remove="wwwroot\assets\fonts\LineIcons.eot" />
+    <None Remove="wwwroot\assets\fonts\LineIcons.svg" />
+    <None Remove="wwwroot\assets\fonts\LineIcons.ttf" />
+    <None Remove="wwwroot\assets\fonts\LineIcons.woff" />
+    <None Remove="wwwroot\assets\fonts\LineIcons.woff2" />
+    <None Remove="wwwroot\assets\img\about\about-1.png" />
+    <None Remove="wwwroot\assets\img\about\about-2.png" />
+    <None Remove="wwwroot\assets\img\about\about-left-shape.svg" />
+    <None Remove="wwwroot\assets\img\about\about-right-shape.svg" />
+    <None Remove="wwwroot\assets\img\about\left-dots.svg" />
+    <None Remove="wwwroot\assets\img\about\right-dots.svg" />
+    <None Remove="wwwroot\assets\img\favicon.png" />
+    <None Remove="wwwroot\assets\img\favicon.svg" />
+    <None Remove="wwwroot\assets\img\footer\footer-bg.svg" />
+    <None Remove="wwwroot\assets\img\hero\hero-bg.svg" />
+    <None Remove="wwwroot\assets\img\hero\hero-img.png" />
+    <None Remove="wwwroot\assets\img\hero\hero-shape.svg" />
+    <None Remove="wwwroot\assets\img\logo\logo-2.svg" />
+    <None Remove="wwwroot\assets\img\logo\logo.png" />
+    <None Remove="wwwroot\assets\img\subscribe\subscribe-bg.svg" />
+    <None Remove="wwwroot\assets\img\testimonial\testimonial-1.png" />
+    <None Remove="wwwroot\assets\img\testimonial\testimonial-2.png" />
+    <None Remove="wwwroot\assets\img\testimonial\testimonial-3.png" />
+    <None Remove="wwwroot\assets\img\testimonial\testimonial-dots.svg" />
+    <None Remove="wwwroot\assets\img\testimonial\testimonial-shape.svg" />
+    <None Remove="wwwroot\assets\js\.DS_Store" />
+    <None Remove="wwwroot\assets\js\main.js" />
+    <None Remove="wwwroot\assets\js\wow.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\img\.DS_Store" />
+    <None Include="wwwroot\assets\img\logo\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.2.3" />
+    <PackageReference Include="Chart.js" Version="3.7.1" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="jQuery" Version="3.6.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.5" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="popper.js" Version="1.16.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\assets\fonts\LineIcons.eot" />
+    <Resource Include="wwwroot\assets\fonts\LineIcons.svg" />
+    <Resource Include="wwwroot\assets\fonts\LineIcons.ttf" />
+    <Resource Include="wwwroot\assets\fonts\LineIcons.woff" />
+    <Resource Include="wwwroot\assets\fonts\LineIcons.woff2" />
+    <Resource Include="wwwroot\assets\img\about\about-1.png" />
+    <Resource Include="wwwroot\assets\img\about\about-2.png" />
+    <Resource Include="wwwroot\assets\img\about\about-left-shape.svg" />
+    <Resource Include="wwwroot\assets\img\about\about-right-shape.svg" />
+    <Resource Include="wwwroot\assets\img\about\left-dots.svg" />
+    <Resource Include="wwwroot\assets\img\about\right-dots.svg" />
+    <Resource Include="wwwroot\assets\img\favicon.png" />
+    <Resource Include="wwwroot\assets\img\favicon.svg" />
+    <Resource Include="wwwroot\assets\img\footer\footer-bg.svg" />
+    <Resource Include="wwwroot\assets\img\hero\hero-bg.svg" />
+    <Resource Include="wwwroot\assets\img\hero\hero-img.png" />
+    <Resource Include="wwwroot\assets\img\hero\hero-shape.svg" />
+    <Resource Include="wwwroot\assets\img\logo\logo-2.svg" />
+    <Resource Include="wwwroot\assets\img\logo\logo.png" />
+    <Resource Include="wwwroot\assets\img\subscribe\subscribe-bg.svg" />
+    <Resource Include="wwwroot\assets\img\testimonial\testimonial-1.png" />
+    <Resource Include="wwwroot\assets\img\testimonial\testimonial-2.png" />
+    <Resource Include="wwwroot\assets\img\testimonial\testimonial-3.png" />
+    <Resource Include="wwwroot\assets\img\testimonial\testimonial-dots.svg" />
+    <Resource Include="wwwroot\assets\img\testimonial\testimonial-shape.svg" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/artifacthub-repo.json" /></VisualStudio></ProjectExtensions>
+
+</Project>

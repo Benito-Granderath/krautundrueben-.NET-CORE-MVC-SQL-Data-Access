@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+@model ViewModel
+@{
+    int deliveryCount = Convert.ToInt32(ViewBag.DeliveryCount);
+    int customerCount = Convert.ToInt32(ViewBag.CustomerCount);
+    int orderCount = Convert.ToInt32(ViewBag.OrderCount);
+
+}
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon"
+          type="image/x-icon"
+          href="assets/img/favicon.png" />
+
+    <link rel="stylesheet" href="assets/css/lineicons.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="preloader">
+        <div class="loader">
+            <div class="spinner">
+                <div class="spinner-container">
+                    <div class="spinner-rotator">
+                        <div class="spinner-left">
+                            <div class="spinner-circle"></div>
+                        </div>
+                        <div class="spinner-right">
+                            <div class="spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                <img src="assets/img/logo/logo.png" alt="Logo" />
+                            </a>
+                            <button class="navbar-toggler"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent"
+                                    aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse sub-menu-bar"
+                                 id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="page-scroll active" href="#home">Startseite</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#features">Übersicht</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#about">Datenansicht</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Home/Recipe">Rezepte</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center position-relative">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                            Kraut und Rüben
+                        </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".6s" style="font-size:30px">
+                            Ihr Biomarkt
+                        </p>
+                        <a href="#features"
+                           class="main-btn border-btn btn-hover wow fadeInUp"
+                           data-wow-delay=".6s">Details zur Datenbank anzeigen</a>
+                        <a href="#features" class="scroll-bottom">
+                            <i class="lni lni-arrow-down"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content">
+                        <div class="content" style="margin-right:-120px">
+                            <div class="container">
+                                <div class="value wow fadeInUp" data-wow-delay=".6s" akhi="@orderCount">0</div>
+                                <div class="text wow fadeInUp" data-wow-delay=".6s"> Bestellungen</div>
+                            </div>
+                            <div class="container">
+                                <div class="value wow fadeInUp" data-wow-delay=".6s" akhi="@customerCount">0</div>
+                                <div class="text wow fadeInUp" data-wow-delay=".6s"> Kunden</div>
+                            </div>
+                            <div class="container">
+                                <div class="value wow fadeInUp" data-wow-delay=".6s" akhi="@deliveryCount">0</div>
+                                <div class="text wow fadeInUp" data-wow-delay=".6s">Lieferanten</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="features" class="feature-section pt-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-8 col-sm-10">
+                    <div class="single-feature">
+                        <div class="icon">
+                            <i class="lni lni-bootstrap"></i>
+                        </div>
+                        <div class="content">
+                            <a href="#about"
+                               class="main-btn border-btn btn-hover">
+                                Datenansicht
+                            </a>
+                            <p>
+                                Durchsuchen oder Visualisieren Sie Ihre Datenbankeinträge in übersichtlichenn Tabellen oder Graphen
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-10">
+                    <div class="single-feature">
+                        <div class="icon">
+                            <i class="lni lni-layout"></i>
+                        </div>
+                        <div class="content">
+
+                             <a href="#myModal" class="main-btn border-btn btn-hover" data-toggle="modal">Autorisierung</a>
+                            
+                            <p>
+                                Authentifizieren Sie sich als Key User und bearbeiten/löschen Sie Ihre persönlichen Datensätze
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-10">
+                    <div class="single-feature">
+                        <div class="icon">
+                            <i class="lni lni-coffee-cup"></i>
+                        </div>
+                        <div class="content">
+                            <button onclick="location.href = '/Home/Recipe';" class="main-btn border-btn btn-hover">
+                                Rezepte
+                            </button>
+                            <p>
+                                Erstellen, Bearbeiten und Löschen Sie Ihre Individuellen Rezepte mit unserer dynamischen Zutatenauswahl
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section pt-150">
+        <div class="container" id="urmypaginationnow" style="overflow:auto">
+            <div class="row align-items-center">
+                <label id="searchBarContainer"><input id="searchBarContainer" type="checkbox" class="dataset-checkbox" value="order" checked="checked"> Bestellung</label>
+                <label id="searchBarContainer"><input id="searchBarContainer" type="checkbox" class="dataset-checkbox" value="customer" checked="checked"> Kunde</label>
+                <label id="searchBarContainer"><input id="searchBarContainer" type="checkbox" class="dataset-checkbox" value="delivery" checked="checked"> Lieferant</label>
+                <label id="searchBarContainer"><input id="searchBarContainer" type="checkbox" class="dataset-checkbox" value="ingredient" checked="checked"> Zutat</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Gruppieren nach
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button id="showalldiv" class="dropdown-item" type="button">Alle</button></li>
+                        <li><button id="showorderdiv" class="dropdown-item" type="button">Bestellung</button></li>
+                        <li><button id="showcustomerdiv" class="dropdown-item" type="button">Kunde</button></li>
+                        <li><button id="showdeliverydiv" class="dropdown-item" type="button">Lieferant</button></li>
+                        <li><button id="showingredientdiv" class="dropdown-item" type="button">Zutat</button></li>
+
+                    </ul>
+                </div>
+                <div id='groupbyall'>
+                    <div id='krautundrueben'>
+                        <table class="content-table" id='tbllist'>
+                            <thead>
+                                <tr>
+                                    <th class="column-order">Bestellnummer</th>
+                                    <th class="column-order">Kundennummer</th>
+                                    <th class="column-order">Bestelldatum</th>
+                                    <th class="column-order">Rechnungsbetrag</th>
+                                    <th class="column-customer">Nachname</th>
+                                    <th class="column-customer">Vorname</th>
+                                    <th class="column-customer">Geburtsdatum</th>
+                                    <th class="column-customer">Strasse</th>
+                                    <th class="column-customer">Hausnummer</th>
+                                    <th class="column-customer">Postleitzahl</th>
+                                    <th class="column-customer">Ort</th>
+                                    <th class="column-customer">Telefon</th>
+                                    <th class="column-customer">Email</th>
+                                    <th class="column-delivery">Lieferantennummer</th>
+                                    <th class="column-delivery">Lieferantenname</th>
+                                    <th class="column-delivery">Straße</th>
+                                    <th class="column-delivery">Hausnummer</th>
+                                    <th class="column-delivery">Postleitzahl</th>
+                                    <th class="column-delivery">Ort</th>
+                                    <th class="column-delivery">Telefon</th>
+                                    <th class="column-delivery">Email</th>
+                                    <th class="column-ingredient">Zutatennummer</th>
+                                    <th class="column-ingredient">Bezeichnung</th>
+                                    <th class="column-ingredient">Einheit</th>
+                                    <th class="column-ingredient">Nettopreis</th>
+                                    <th class="column-ingredient">Bestand</th>
+                                    <th class="column-ingredient">Lieferant</th>
+                                    <th class="column-ingredient">Kalorien</th>
+                                    <th class="column-ingredient">Kohlenhydrate</th>
+                                    <th class="column-ingredient">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.DisplayAllQuery)
+                                {
+                                    <tr>
+                                        <td class="column-order">@item.BESTELLNR</td>
+                                        <td class="column-order">@item.KUNDENNR</td>
+                                        <td class="column-order">@item.BESTELLDATUM</td>
+                                        <td class="column-order">@item.RECHNUNGSBETRAG</td>
+                                        <td class="column-customer">@item.NACHNAME</td>
+                                        <td class="column-customer">@item.VORNAME</td>
+                                        <td class="column-customer">@item.GEBURTSDATUM</td>
+                                        <td class="column-customer">@item.KUNDESTRASSE</td>
+                                        <td class="column-customer">@item.KUNDEHAUSNR</td>
+                                        <td class="column-customer">@item.KUNDEPLZ</td>
+                                        <td class="column-customer">@item.KUNDEORT</td>
+                                        <td class="column-customer">@item.KUNDETELEFON</td>
+                                        <td class="column-customer">@item.KUNDEEMAIL</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNAME</td>
+                                        <td class="column-delivery">@item.LIEFERANTSTRASSE</td>
+                                        <td class="column-delivery">@item.LIEFERANTHAUSNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTPLZ</td>
+                                        <td class="column-delivery">@item.LIEFERANTORT</td>
+                                        <td class="column-delivery">@item.LIEFERANTTELEFON</td>
+                                        <td class="column-delivery">@item.LIEFERANTEMAIL</td>
+                                        <td class="column-ingredient">@item.ZUTATENNR</td>
+                                        <td class="column-ingredient">@item.BEZEICHNUNG</td>
+                                        <td class="column-ingredient">@item.EINHEIT</td>
+                                        <td class="column-ingredient">@item.NETTOPREIS</td>
+                                        <td class="column-ingredient">@item.BESTAND</td>
+                                        <td class="column-ingredient">@item.LIEFERANT</td>
+                                        <td class="column-ingredient">@item.KALORIEN</td>
+                                        <td class="column-ingredient">@item.KOHLENHYDRATE</td>
+                                        <td class="column-ingredient">@item.PROTEIN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id='groupbycustomer' style="display:none" ;>
+                    <div id='krautundrueben'>
+                        <table class="content-table" id='tbllist'>
+                            <thead>
+                                <tr>
+                                    <th class="column-order">Bestellnummer</th>
+                                    <th class="column-order">Kundennummer</th>
+                                    <th class="column-order">Bestelldatum</th>
+                                    <th class="column-order">Rechnungsbetrag</th>
+                                    <th class="column-customer">Nachname</th>
+                                    <th class="column-customer">Vorname</th>
+                                    <th class="column-customer">Geburtsdatum</th>
+                                    <th class="column-customer">Strasse</th>
+                                    <th class="column-customer">Hausnummer</th>
+                                    <th class="column-customer">Postleitzahl</th>
+                                    <th class="column-customer">Ort</th>
+                                    <th class="column-customer">Telefon</th>
+                                    <th class="column-customer">Email</th>
+                                    <th class="column-delivery">Lieferantennummer</th>
+                                    <th class="column-delivery">Lieferantenname</th>
+                                    <th class="column-delivery">Straße</th>
+                                    <th class="column-delivery">Hausnummer</th>
+                                    <th class="column-delivery">Postleitzahl</th>
+                                    <th class="column-delivery">Ort</th>
+                                    <th class="column-delivery">Telefon</th>
+                                    <th class="column-delivery">Email</th>
+                                    <th class="column-ingredient">Zutatennummer</th>
+                                    <th class="column-ingredient">Bezeichnung</th>
+                                    <th class="column-ingredient">Einheit</th>
+                                    <th class="column-ingredient">Nettopreis</th>
+                                    <th class="column-ingredient">Bestand</th>
+                                    <th class="column-ingredient">Lieferant</th>
+                                    <th class="column-ingredient">Kalorien</th>
+                                    <th class="column-ingredient">Kohlenhydrate</th>
+                                    <th class="column-ingredient">Protein</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GroupByCustomerQuery)
+                                {
+                                    <tr>
+                                        <td class="column-order">@item.BESTELLNR</td>
+                                        <td class="column-order">@item.KUNDENNR</td>
+                                        <td class="column-order">@item.BESTELLDATUM</td>
+                                        <td class="column-order">@item.RECHNUNGSBETRAG</td>
+                                        <td class="column-customer">@item.NACHNAME</td>
+                                        <td class="column-customer">@item.VORNAME</td>
+                                        <td class="column-customer">@item.GEBURTSDATUM</td>
+                                        <td class="column-customer">@item.KUNDESTRASSE</td>
+                                        <td class="column-customer">@item.KUNDEHAUSNR</td>
+                                        <td class="column-customer">@item.KUNDEPLZ</td>
+                                        <td class="column-customer">@item.KUNDEORT</td>
+                                        <td class="column-customer">@item.KUNDETELEFON</td>
+                                        <td class="column-customer">@item.KUNDEEMAIL</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNAME</td>
+                                        <td class="column-delivery">@item.LIEFERANTSTRASSE</td>
+                                        <td class="column-delivery">@item.LIEFERANTHAUSNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTPLZ</td>
+                                        <td class="column-delivery">@item.LIEFERANTORT</td>
+                                        <td class="column-delivery">@item.LIEFERANTTELEFON</td>
+                                        <td class="column-delivery">@item.LIEFERANTEMAIL</td>
+                                        <td class="column-ingredient">@item.ZUTATENNR</td>
+                                        <td class="column-ingredient">@item.BEZEICHNUNG</td>
+                                        <td class="column-ingredient">@item.EINHEIT</td>
+                                        <td class="column-ingredient">@item.NETTOPREIS</td>
+                                        <td class="column-ingredient">@item.BESTAND</td>
+                                        <td class="column-ingredient">@item.LIEFERANT</td>
+                                        <td class="column-ingredient">@item.KALORIEN</td>
+                                        <td class="column-ingredient">@item.KOHLENHYDRATE</td>
+                                        <td class="column-ingredient">@item.PROTEIN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id='groupbyorder' style="display:none" ;>
+                    <div id='krautundrueben'>
+                        <table class="content-table" id='tbllist'>
+                            <thead>
+                                <tr>
+                                    <th class="column-order">Bestellnummer</th>
+                                    <th class="column-order">Kundennummer</th>
+                                    <th class="column-order">Bestelldatum</th>
+                                    <th class="column-order">Rechnungsbetrag</th>
+                                    <th class="column-customer">Nachname</th>
+                                    <th class="column-customer">Vorname</th>
+                                    <th class="column-customer">Geburtsdatum</th>
+                                    <th class="column-customer">Strasse</th>
+                                    <th class="column-customer">Hausnummer</th>
+                                    <th class="column-customer">Postleitzahl</th>
+                                    <th class="column-customer">Ort</th>
+                                    <th class="column-customer">Telefon</th>
+                                    <th class="column-customer">Email</th>
+                                    <th class="column-delivery">Lieferantennummer</th>
+                                    <th class="column-delivery">Lieferantenname</th>
+                                    <th class="column-delivery">Straße</th>
+                                    <th class="column-delivery">Hausnummer</th>
+                                    <th class="column-delivery">Postleitzahl</th>
+                                    <th class="column-delivery">Ort</th>
+                                    <th class="column-delivery">Telefon</th>
+                                    <th class="column-delivery">Email</th>
+                                    <th class="column-ingredient">Zutatennummer</th>
+                                    <th class="column-ingredient">Bezeichnung</th>
+                                    <th class="column-ingredient">Einheit</th>
+                                    <th class="column-ingredient">Nettopreis</th>
+                                    <th class="column-ingredient">Bestand</th>
+                                    <th class="column-ingredient">Lieferant</th>
+                                    <th class="column-ingredient">Kalorien</th>
+                                    <th class="column-ingredient">Kohlenhydrate</th>
+                                    <th class="column-ingredient">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GroupByOrderQuery)
+                                {
+                                    <tr>
+                                        <td class="column-order">@item.BESTELLNR</td>
+                                        <td class="column-order">@item.KUNDENNR</td>
+                                        <td class="column-order">@item.BESTELLDATUM</td>
+                                        <td class="column-order">@item.RECHNUNGSBETRAG</td>
+                                        <td class="column-customer">@item.NACHNAME</td>
+                                        <td class="column-customer">@item.VORNAME</td>
+                                        <td class="column-customer">@item.GEBURTSDATUM</td>
+                                        <td class="column-customer">@item.KUNDESTRASSE</td>
+                                        <td class="column-customer">@item.KUNDEHAUSNR</td>
+                                        <td class="column-customer">@item.KUNDEPLZ</td>
+                                        <td class="column-customer">@item.KUNDEORT</td>
+                                        <td class="column-customer">@item.KUNDETELEFON</td>
+                                        <td class="column-customer">@item.KUNDEEMAIL</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNAME</td>
+                                        <td class="column-delivery">@item.LIEFERANTSTRASSE</td>
+                                        <td class="column-delivery">@item.LIEFERANTHAUSNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTPLZ</td>
+                                        <td class="column-delivery">@item.LIEFERANTORT</td>
+                                        <td class="column-delivery">@item.LIEFERANTTELEFON</td>
+                                        <td class="column-delivery">@item.LIEFERANTEMAIL</td>
+                                        <td class="column-ingredient">@item.ZUTATENNR</td>
+                                        <td class="column-ingredient">@item.BEZEICHNUNG</td>
+                                        <td class="column-ingredient">@item.EINHEIT</td>
+                                        <td class="column-ingredient">@item.NETTOPREIS</td>
+                                        <td class="column-ingredient">@item.BESTAND</td>
+                                        <td class="column-ingredient">@item.LIEFERANT</td>
+                                        <td class="column-ingredient">@item.KALORIEN</td>
+                                        <td class="column-ingredient">@item.KOHLENHYDRATE</td>
+                                        <td class="column-ingredient">@item.PROTEIN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id='groupbydelivery' style="display:none" ;>
+                    <div id='krautundrueben'>
+                        <table class="content-table" id='tbllist'>
+                            <thead>
+                                <tr>
+                                    <th class="column-order">Bestellnummer</th>
+                                    <th class="column-order">Kundennummer</th>
+                                    <th class="column-order">Bestelldatum</th>
+                                    <th class="column-order">Rechnungsbetrag</th>
+                                    <th class="column-customer">Nachname</th>
+                                    <th class="column-customer">Vorname</th>
+                                    <th class="column-customer">Geburtsdatum</th>
+                                    <th class="column-customer">Strasse</th>
+                                    <th class="column-customer">Hausnummer</th>
+                                    <th class="column-customer">Postleitzahl</th>
+                                    <th class="column-customer">Ort</th>
+                                    <th class="column-customer">Telefon</th>
+                                    <th class="column-customer">Email</th>
+                                    <th class="column-delivery">Lieferantennummer</th>
+                                    <th class="column-delivery">Lieferantenname</th>
+                                    <th class="column-delivery">Straße</th>
+                                    <th class="column-delivery">Hausnummer</th>
+                                    <th class="column-delivery">Postleitzahl</th>
+                                    <th class="column-delivery">Ort</th>
+                                    <th class="column-delivery">Telefon</th>
+                                    <th class="column-delivery">Email</th>
+                                    <th class="column-ingredient">Zutatennummer</th>
+                                    <th class="column-ingredient">Bezeichnung</th>
+                                    <th class="column-ingredient">Einheit</th>
+                                    <th class="column-ingredient">Nettopreis</th>
+                                    <th class="column-ingredient">Bestand</th>
+                                    <th class="column-ingredient">Lieferant</th>
+                                    <th class="column-ingredient">Kalorien</th>
+                                    <th class="column-ingredient">Kohlenhydrate</th>
+                                    <th class="column-ingredient">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GroupByDeliveryQuery)
+                                {
+                                    <tr>
+                                        <td class="column-order">@item.BESTELLNR</td>
+                                        <td class="column-order">@item.KUNDENNR</td>
+                                        <td class="column-order">@item.BESTELLDATUM</td>
+                                        <td class="column-order">@item.RECHNUNGSBETRAG</td>
+                                        <td class="column-customer">@item.NACHNAME</td>
+                                        <td class="column-customer">@item.VORNAME</td>
+                                        <td class="column-customer">@item.GEBURTSDATUM</td>
+                                        <td class="column-customer">@item.KUNDESTRASSE</td>
+                                        <td class="column-customer">@item.KUNDEHAUSNR</td>
+                                        <td class="column-customer">@item.KUNDEPLZ</td>
+                                        <td class="column-customer">@item.KUNDEORT</td>
+                                        <td class="column-customer">@item.KUNDETELEFON</td>
+                                        <td class="column-customer">@item.KUNDEEMAIL</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNAME</td>
+                                        <td class="column-delivery">@item.LIEFERANTSTRASSE</td>
+                                        <td class="column-delivery">@item.LIEFERANTHAUSNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTPLZ</td>
+                                        <td class="column-delivery">@item.LIEFERANTORT</td>
+                                        <td class="column-delivery">@item.LIEFERANTTELEFON</td>
+                                        <td class="column-delivery">@item.LIEFERANTEMAIL</td>
+                                        <td class="column-ingredient">@item.ZUTATENNR</td>
+                                        <td class="column-ingredient">@item.BEZEICHNUNG</td>
+                                        <td class="column-ingredient">@item.EINHEIT</td>
+                                        <td class="column-ingredient">@item.NETTOPREIS</td>
+                                        <td class="column-ingredient">@item.BESTAND</td>
+                                        <td class="column-ingredient">@item.LIEFERANT</td>
+                                        <td class="column-ingredient">@item.KALORIEN</td>
+                                        <td class="column-ingredient">@item.KOHLENHYDRATE</td>
+                                        <td class="column-ingredient">@item.PROTEIN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id='groupbyingredient' style="display:none" ;>
+                    <div id='krautundrueben'>
+                        <table class="content-table" id=''>
+                            <thead>
+                                <tr>
+                                    <th class="column-order">Bestellnummer</th>
+                                    <th class="column-order">Kundennummer</th>
+                                    <th class="column-order">Bestelldatum</th>
+                                    <th class="column-order">Rechnungsbetrag</th>
+                                    <th class="column-customer">Nachname</th>
+                                    <th class="column-customer">Vorname</th>
+                                    <th class="column-customer">Geburtsdatum</th>
+                                    <th class="column-customer">Strasse</th>
+                                    <th class="column-customer">Hausnummer</th>
+                                    <th class="column-customer">Postleitzahl</th>
+                                    <th class="column-customer">Ort</th>
+                                    <th class="column-customer">Telefon</th>
+                                    <th class="column-customer">Email</th>
+                                    <th class="column-delivery">Lieferantennummer</th>
+                                    <th class="column-delivery">Lieferantenname</th>
+                                    <th class="column-delivery">Straße</th>
+                                    <th class="column-delivery">Hausnummer</th>
+                                    <th class="column-delivery">Postleitzahl</th>
+                                    <th class="column-delivery">Ort</th>
+                                    <th class="column-delivery">Telefon</th>
+                                    <th class="column-delivery">Email</th>
+                                    <th class="column-ingredient">Zutatennummer</th>
+                                    <th class="column-ingredient">Bezeichnung</th>
+                                    <th class="column-ingredient">Einheit</th>
+                                    <th class="column-ingredient">Nettopreis</th>
+                                    <th class="column-ingredient">Bestand</th>
+                                    <th class="column-ingredient">Lieferant</th>
+                                    <th class="column-ingredient">Kalorien</th>
+                                    <th class="column-ingredient">Kohlenhydrate</th>
+                                    <th class="column-ingredient">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.GroupByIngredientQuery)
+                                {
+                                    <tr>
+                                        <td class="column-order">@item.BESTELLNR</td>
+                                        <td class="column-order">@item.KUNDENNR</td>
+                                        <td class="column-order">@item.BESTELLDATUM</td>
+                                        <td class="column-order">@item.RECHNUNGSBETRAG</td>
+                                        <td class="column-customer">@item.NACHNAME</td>
+                                        <td class="column-customer">@item.VORNAME</td>
+                                        <td class="column-customer">@item.GEBURTSDATUM</td>
+                                        <td class="column-customer">@item.KUNDESTRASSE</td>
+                                        <td class="column-customer">@item.KUNDEHAUSNR</td>
+                                        <td class="column-customer">@item.KUNDEPLZ</td>
+                                        <td class="column-customer">@item.KUNDEORT</td>
+                                        <td class="column-customer">@item.KUNDETELEFON</td>
+                                        <td class="column-customer">@item.KUNDEEMAIL</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTENNAME</td>
+                                        <td class="column-delivery">@item.LIEFERANTSTRASSE</td>
+                                        <td class="column-delivery">@item.LIEFERANTHAUSNR</td>
+                                        <td class="column-delivery">@item.LIEFERANTPLZ</td>
+                                        <td class="column-delivery">@item.LIEFERANTORT</td>
+                                        <td class="column-delivery">@item.LIEFERANTTELEFON</td>
+                                        <td class="column-delivery">@item.LIEFERANTEMAIL</td>
+                                        <td class="column-ingredient">@item.ZUTATENNR</td>
+                                        <td class="column-ingredient">@item.BEZEICHNUNG</td>
+                                        <td class="column-ingredient">@item.EINHEIT</td>
+                                        <td class="column-ingredient">@item.NETTOPREIS</td>
+                                        <td class="column-ingredient">@item.BESTAND</td>
+                                        <td class="column-ingredient">@item.LIEFERANT</td>
+                                        <td class="column-ingredient">@item.KALORIEN</td>
+                                        <td class="column-ingredient">@item.KOHLENHYDRATE</td>
+                                        <td class="column-ingredient">@item.PROTEIN</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="charts" class="about-section pt-150">
+        <ul class="nav-menu">
+            <li class="active" data-chart="chart1">Rechnungsbetrag pro Kunde</li>
+            <li data-chart="chart2">Meistverkaufte Zutaten</li>
+            <li data-chart="chart3">Aktivste Lieferanten</li>
+            <li data-chart="chart4">Verkäufe Im Zeitverlauf</li>
+        </ul>
+        <div class="dashboard">
+            <div id="chart1" class="chart-container">
+                <canvas></canvas>
+            </div>
+            <div id="chart2" class="chart-container">
+                <canvas></canvas>
+            </div>
+            <div id="chart3" class="chart-container">
+                <canvas></canvas>
+            </div>
+            <div id="chart4" class="chart-container">
+                <canvas></canvas>
+            </div>
+        </div>
+    </section>
+
+
+ 
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="avatar">
+                        <img src="/assets/img/KAROTTE.webp" alt="Avatar">
+                    </div>
+                    <h4 class="modal-title">Mandanten-Login</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Login Code" required="required">
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Login Code beantragen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== footer end ======== -->
+    <!-- ======== scroll-top ======== -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+
+    @section scripts {
+    <script>
+        const counters = document.querySelectorAll('.value');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const animate = () => {
+                const value = +counter.getAttribute('akhi');
+                const data = +counter.innerText;
+
+
+                const time = value / speed;
+                if (data < value) {
+                    counter.innerText = Math.ceil(data + time);
+                    setTimeout(animate, 105);
+                } else {
+                    counter.innerText = value;
+                }
+
+            }
+
+            animate();
+        });
+
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <link href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/cr-1.6.2/fc-4.2.2/rg-1.3.1/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/cr-1.6.2/fc-4.2.2/rg-1.3.1/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('table.content-table').DataTable({
+                dom: '<"searchBar"f>t<"pagination"p>',
+            });
+            var searchBar = $('div.dataTables_filter');
+            $('#urmypaginationnow').append(searchBar);
+        });
+
+        $(document).ready(function () {
+            $('.dataset-checkbox').on('change', function () {
+                var selectedDatasets = [];
+
+                $('.dataset-checkbox:checked').each(function () {
+                    selectedDatasets.push($(this).val());
+                });
+
+                $('.column-order').toggle(selectedDatasets.includes('order'));
+                $('.column-customer').toggle(selectedDatasets.includes('customer'));
+                $('.column-delivery').toggle(selectedDatasets.includes('delivery'));
+                $('.column-ingredient').toggle(selectedDatasets.includes('ingredient'));
+            });
+        });
+    </script>
+    <script>
+            function switchChart(chartId) {
+                document.querySelectorAll('.chart-container').forEach(function (container) {
+                    container.style.display = 'none';
+                });
+                document.getElementById(chartId).style.display = 'block';
+            }
+
+            document.querySelectorAll('.nav-menu li').forEach(function (item) {
+                item.addEventListener('click', function () {
+
+                    document.querySelectorAll('.nav-menu li').forEach(function (menuItem) {
+                        menuItem.classList.remove('active');
+                    });
+                    item.classList.add('active');
+
+                    var chartId = item.getAttribute('data-chart');
+                    switchChart(chartId);
+                });
+            });
+
+         
+            var data = @Html.Raw(Json.Serialize(Model.AnalyzeOrderTrend));
+            var labels = data.map(d => d.nachname);
+            var values = data.map(d => d.total);
+            var ctx1 = document.querySelector('#chart1 canvas').getContext('2d');
+            var chart1 = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Kundenausgaben',
+                        data: values,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Insgesamter Rechnungsbetrag (€)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Kundennachname'
+
+                            }
+                        }
+                    }
+                }
+            });
+
+            var ingredientData = @Html.Raw(Json.Serialize(Model.IngredientAnalysis));
+            var labels2 = ingredientData.map(d => d.bezeichnung);
+            var values2 = ingredientData.map(d => d.totalQuantitySold);
+            var ctx2 = document.querySelector('#chart2 canvas').getContext('2d');
+            var chart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels2,
+                    datasets: [{
+                        label: 'Verkaufte Gesamtmenge',
+                        data: values2,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Verkaufte Gesamtmenge'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Zutaten'
+                            }
+                        }
+                    }
+                }
+            });
+
+
+            var supplierData = @Html.Raw(Json.Serialize(Model.MostActiveSuppliers));
+            var labels3 = supplierData.map(d => d.lieferantenname);
+            var values3 = supplierData.map(d => d.ingredient_Count);
+            var ctx3 = document.querySelector('#chart3 canvas').getContext('2d');
+
+            var chart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: labels3,
+                    datasets: [{
+                        label: 'Angebotene Zutaten',
+                        data: values3,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Angebotene Zutaten'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Lieferantenname'
+                            }
+                        }
+                    }
+                }
+            });
+            var OverTimeData = @Html.Raw(Json.Serialize(Model.SalesPerDate));
+            var labels4 = OverTimeData.map(d => d.salesPerDateDate);
+            var values4 = OverTimeData.map(d => d.salesPerDateSales);
+            console.log(labels4)
+            console.log(values4)
+            var ctx4 = document.querySelector('#chart4 canvas').getContext('2d');
+            var chart4 = new Chart(ctx4, {
+                type: 'line',
+                data: {
+                    labels: labels4,
+                    datasets: [{
+                        label: 'Gesamtumsatz',
+                        data: values4,
+                        fill: false,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Gesamtumsatz'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Datum'
+                            }
+                        }
+                    }
+                }
+            });
+            switchChart('chart1');
+    </script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+}
+</body>
+</html>
