@@ -3,16 +3,15 @@
 namespace krautundrueben.Models
 {
     public class Recipe_Model
-    { 
-        [Key] public int REZEPTID { get; set; }
-        public string? REZEPTBEZEICHNUNG { get; set; }
-        public string? ANLEITUNG { get; set; }
-        public int KALORIEN {get; set; }
-        public int PROTEIN {get; set; }
-        public string? ALLERGIEN {get; set; }
-        public decimal KOHLENHYDRATE { get; set; }
-        public string? ZUTATEN { get; set; } 
-        public bool ISVEGAN { get; set; }
-        public string? SelectedIngredientIds { get; set; }
+    {
+        [Key] public int Rezeptnr { get; set; }
+        public string? Rezeptname { get; set; }
+        public string? Anleitung { get; set; }
+        public bool Vegan { get; set; }
+        public bool LowCarb {get;set; }
+        public bool Vegetarisch { get; set; }
+        public bool Frutarisch { get; set; }
+        public bool HighProtein { get; set; }
+        public List<int> SelectedIngredients { get; set; }
     }
 }

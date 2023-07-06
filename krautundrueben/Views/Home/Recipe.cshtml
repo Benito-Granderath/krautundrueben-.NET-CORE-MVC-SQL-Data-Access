@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Recipe_Model>
 
+
 <!DOCTYPE html>
 
 <head>
@@ -87,150 +88,81 @@
 
         <form method="post" asp-controller="Home" asp-action="Recipe">
             <div class="form-group">
-                <label for="recipeName">Rezeptbezeichnung</label>
-                <input type="text" class="form-control" id="recipeName" name="REZEPTBEZEICHNUNG" required />
+                <label for="Rezeptname">Rezeptname</label>
+                <input type="text" class="form-control" id="Rezeptname" name="Rezeptname" required />
             </div>
             <div class="form-group">
                 <label for="instructions">Anleitung</label>
                 <textarea class="form-control" id="instructions" name="ANLEITUNG" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="calories">Kalorien</label>
-                <input type="number" class="form-control" id="calories" name="KALORIEN" required />
+                <input class="form-check-input" type="checkbox" id="ISVEGAN" name="Vegan" value="true" style="width: 25px; height: 25px; margin-top:10px">
+                <input type="hidden" name="Vegan" value="false" />
+                <label for="Vegan" style="margin-top: 10px">Vegan</label>
             </div>
             <div class="form-group">
-                <label for="protein">Protein</label>
-                <input type="number" class="form-control" id="protein" name="PROTEIN" required />
+                <input class="form-check-input" type="checkbox" id="LowCarb" name="LowCarb" value="true" style="width: 25px; height: 25px; margin-top:10px">
+                <input type="hidden" name="LowCarb" value="false" />
+                <label for="LowCarb" style="margin-top: 10px">Low-Carb</label>
             </div>
             <div class="form-group">
-                <label for="carbohydrates">Kohlenhydrate</label>
-                <input type="number" class="form-control" id="carbohydrates" name="KOHLENHYDRATE" required />
+                <input class="form-check-input" type="checkbox" id="Vegetarisch" name="Vegetarisch" value="true" style="width: 25px; height: 25px; margin-top:10px">
+                <input type="hidden" name="Vegetarisch" value="false" />
+                <label for="Vegetarisch" style="margin-top: 10px">Vegetarisch</label>
             </div>
             <div class="form-group">
-                <label for="allergies">Beschränkungen</label>
-                <select class="form-control" id="allergies" name="ALLERGIEN">
-                    <option value="Keine">Keine</option>
-                    <option value="Erdnuss">Erdnuss</option>
-                    <option value="Gluten">Gluten</option>
-                    <option value="Laktose">Laktose</option>
-                    <option value="Ei">Ei</option>
-                    <option value="Tomate">Tomate</option>
+                <input class="form-check-input" type="checkbox" id="Frutarisch" name="Frutarisch" value="true" style="width: 25px; height: 25px; margin-top:10px">
+                <input type="hidden" name="Frutarisch" value="false" />
+                <label for="Frutarisch" style="margin-top: 10px">Frutarisch</label>
+            </div>
+            <div class="form-group">
+                <input class="form-check-input" type="checkbox" id="HighProtein" name="HighProtein" value="true" style="width: 25px; height: 25px; margin-top:10px">
+                <input type="hidden" name="HighProtein" value="false" />
+                <label for="HighProtein" style="margin-top: 10px">High-Protein</label>
+            </div>
+            <div class="form-group">
+                <label for="selectedIngredients">Zutaten auswählen</label>
+                <select multiple class="form-control" id="selectedIngredients" name="SelectedIngredients">
+                    @foreach (var ingredient in ViewBag.Ingredients)
+                    {
+                        <option value="@ingredient.ZUTATENNR">@ingredient.BEZEICHNUNG</option>
+                    }
                 </select>
-
             </div>
-
-            <div class="form-group">
-                <input class="form-check-input" type="checkbox" id="ISVEGAN" name="ISVEGAN" value="true" style="width: 25px; height: 25px; margin-top:10px">
-                <input type="hidden" name="ISVEGAN" value="false" />
-                <label for="ISVEGAN" style="margin-top: 10px">Vegan</label>
-            </div>
-
-            <div class="form-group">
-                <label for="ingredientDropdown"></label>
-                <div class="dropdown">
-                    <button class="btn ingredient-dropdown dropdown-toggle" type="button" id="ingredientDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Zutaten auswählen
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="ingredientDropdown" style="max-height: 200px; overflow-y: auto;">
-                        @foreach (var ingredient in ViewBag.Ingredients)
-                        {
-                            <a class="dropdown-item" href="#" data-value="@ingredient.ZUTATENNR">@ingredient.BEZEICHNUNG</a>
-                        }
-                    </div>
-                    <input type="hidden" id="selectedIngredientIds" name="SelectedIngredientIds" required />
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn save-button">Speichern</button>
-                <a href="/Home" class="btn cancel-button">Abbrechen</a>
-            </div>
+            <button type="submit" class="btn btn-primary">Rezept speichern</button>
         </form>
     </div>
     <hr />
-    <div id="recipeTableContainer">
-
-
-        <div class="filter-recipes-container">
-            <button class="btn btn-primary filter-recipes-button" type="button" data-toggle="collapse" data-target="#filterRecipesForm" aria-expanded="false" aria-controls="filterRecipesForm">
-                Rezepte Filtern <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="collapse" id="filterRecipesForm">
-                <form class="filter-form">
-                    <div class="form-group" id="filterRecipesForm">
-                        <label for="searchInput">Rezepte suchen:</label>
-                        <input type="text" class="form-control" id="searchInput" name="search" placeholder="Keywords eingeben">
-                    </div>
-                    <div class="form-group" id="filterRecipesForm">
-                        <label for="caloriesRange">Kalorien Beschränkung:</label>
-                        <input type="number" class="form-control" id="caloriesMin" name="caloriesMin" placeholder="Min" step="1">
-                        <input type="number" class="form-control" id="caloriesMax" name="caloriesMax" placeholder="Max" step="1">
-                    </div>
-                    <div class="form-group" id="filterRecipesForm">
-                        <label for="proteinRange">Proteine Beschränkung:</label>
-                        <input type="number" class="form-control" id="proteinMin" name="proteinMin" placeholder="Min" step="0.1">
-                        <input type="number" class="form-control" id="proteinMax" name="proteinMax" placeholder="Max" step="0.1">
-                    </div>
-                    <div class="form-group" id="filterRecipesForm">
-                        <label for="carbsRange">Kohlenhydrate Beschränkung:</label>
-                        <input type="number" class="form-control" id="carbsMin" name="carbsMin" placeholder="Min" step="0.1">
-                        <input type="number" class="form-control" id="carbsMax" name="carbsMax" placeholder="Max" step="0.1">
-                    </div>
-                    <div class="form-group" id="filterRecipesForm">
-                        <label for="allergienSelect">Beschränkungen</label>
-                        <select class="form-control" id="allergienSelect" name="allergien">
-                            <option value="">Beliebige</option>
-                            <option value="Erdnuss">Erdnuss</option>
-                            <option value="Gluten">Gluten</option>
-                            <option value="Laktose">Laktose</option>
-                            <option value="Ei">Ei</option>
-                            <option value="Tomate">Tomate</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="filterRecipesForm">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="veganCheck" name="isVegan">
-                            <label class="form-check-label" for="veganCheck">
-                                Vegan
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Filter anwenden</button>
-                </form>
-            </div>
-        </div>
-        <br />
 
         @if (Model.Any())
         {
             <table class="content-table" id="myTable">
                 <thead>
                     <tr>
-                        <th>Rezeptbezeichnung</th>
+                        <th>Rezeptname</th>
                         <th>Anleitung</th>
-                        <th>Kalorien</th>
-                        <th>Proteine</th>
-                        <th>Kohlenhydrate</th>
-                        <th>Allergien</th>
-                        <th>Zutaten</th>
                         <th>Vegan</th>
-                        <th>  </th>
+                        <th>Low-Carb</th>
+                        <th>Vegetarisch</th>
+                        <th>Frutarisch</th>
+                        <th>High-Protein</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var recipe in Model)
                     {
                         <tr class="recipe-row">
-                            <td>@recipe.REZEPTBEZEICHNUNG</td>
-                            <td>@recipe.ANLEITUNG</td>
-                            <td>@recipe.KALORIEN</td>
-                            <td>@recipe.PROTEIN</td>
-                            <td>@recipe.KOHLENHYDRATE</td>
-                            <td>@recipe.ALLERGIEN</td>
-                            <td>@recipe.ZUTATEN</td>
-                            <td>@recipe.ISVEGAN</td>
+                            <td>@recipe.Rezeptname</td>
+                            <td>@recipe.Anleitung</td>
+                            <td>@recipe.Vegan</td>
+                            <td>@recipe.LowCarb</td>
+                            <td>@recipe.Vegetarisch</td>
+                            <td>@recipe.Frutarisch</td>
+                            <td>@recipe.HighProtein</td>
                             <td>
                                 <form method="post" asp-controller="Home" asp-action="DeleteRecipe">
-                                    <input type="hidden" name="REZEPTNR" value="@recipe.REZEPTID" />
+                                    <input type="hidden" name="REZEPTNR" value="@recipe.Rezeptnr" />
                                     <button type="submit" class="btn btn-danger">Löschen</button>
                                 </form>
                             </td>
@@ -247,27 +179,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.dropdown-menu a.dropdown-item').click(function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-                var selectedValue = $(this).data('value');
-                $(this).toggleClass('active');
-
-                var input = $('#selectedIngredientIds');
-                var currentValues = input.val().split(',');
-                var index = currentValues.indexOf(selectedValue);
-
-                if (index === -1) {
-                    currentValues.push(selectedValue);
-                } else {
-                    currentValues.splice(index, 1);
-                }
-
-                input.val(currentValues.join(','));
-
-                return false;
-            });
 
             $('.dropdown-toggle').click(function () {
                 $('.dropdown-menu').toggleClass('show');
@@ -285,49 +196,6 @@
             $('#myTable').DataTable(
                 { searching: false, pageLength: 20, dom: 'rtip' });
         });
-    </script>
-    <script>
-        function filterRecipes(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-
-            // Get the values from the form inputs
-            var searchInput = document.getElementById('searchInput').value;
-            var caloriesMin = document.getElementById('caloriesMin').value;
-            var caloriesMax = document.getElementById('caloriesMax').value;
-            var proteinMin = document.getElementById('proteinMin').value;
-            var proteinMax = document.getElementById('proteinMax').value;
-            var carbsMin = document.getElementById('carbsMin').value;
-            var carbsMax = document.getElementById('carbsMax').value;
-            var allergienSelect = document.getElementById('allergienSelect').value;
-            var veganCheck = document.getElementById('veganCheck').checked;
-
-            // Filter the recipes based on the selected criteria
-            var recipes = document.getElementsByClassName('recipe-row');
-            for (var i = 0; i < recipes.length; i++) {
-                var recipe = recipes[i];
-                var recipeName = recipe.getElementsByTagName('td')[0].innerText;
-                var calories = parseFloat(recipe.getElementsByTagName('td')[2].innerText);
-                var protein = parseFloat(recipe.getElementsByTagName('td')[3].innerText);
-                var carbs = parseFloat(recipe.getElementsByTagName('td')[4].innerText);
-                var allergien = recipe.getElementsByTagName('td')[5].innerText;
-                var isVegan = recipe.getElementsByTagName('td')[7].innerText === 'True';
-
-                // Apply the filters
-                var matchesSearch = recipeName.toLowerCase().includes(searchInput.toLowerCase());
-                var withinCaloriesRange = (caloriesMin === '' || calories >= parseFloat(caloriesMin)) && (caloriesMax === '' || calories <= parseFloat(caloriesMax));
-                var withinProteinRange = (proteinMin === '' || protein >= parseFloat(proteinMin)) && (proteinMax === '' || protein <= parseFloat(proteinMax));
-                var withinCarbsRange = (carbsMin === '' || carbs >= parseFloat(carbsMin)) && (carbsMax === '' || carbs <= parseFloat(carbsMax));
-                var matchesAllergien = allergienSelect === '' || allergien.toLowerCase().includes(allergienSelect.toLowerCase());
-                var isVeganMatch = !veganCheck || (veganCheck && isVegan);
-
-                // Show/hide the recipe based on the filter results
-                recipe.style.display = matchesSearch && withinCaloriesRange && withinProteinRange && withinCarbsRange && matchesAllergien && isVeganMatch ? '' : 'none';
-            }
-        }
-
-        // Attach the filterRecipes function to the form's submit event
-        var form = document.querySelector('.filter-form');
-        form.addEventListener('submit', filterRecipes);
     </script>
 
     <script src="/assets/js/wow.min.js"></script>

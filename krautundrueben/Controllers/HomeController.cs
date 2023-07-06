@@ -9,6 +9,7 @@ using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace krautundrueben.Controllers
 {
@@ -60,44 +61,65 @@ namespace krautundrueben.Controllers
 
         public IActionResult Recipe()
         {
-            string selectQuery = "SELECT * FROM REZEPTE";
-            string ingredientQuery = "SELECT ZUTATENNR, BEZEICHNUNG FROM ZUTAT ORDER BY BEZEICHNUNG";
-
             using (var dbConnection = _dbConnection)
             {
-                var recipes = _dbConnection.Query<Recipe_Model>(selectQuery);
-                var ingredients = _dbConnection.Query<DBData_Model>(ingredientQuery);
 
+                
+                var selectQuery = _dbConnection.Query<Recipe_Model>("SELECT * FROM REZEPT");
+
+                var ingredients = _dbConnection.Query<DBData_Model>("SELECT ZUTATENNR, BEZEICHNUNG FROM ZUTAT");
+
+                
                 ViewBag.Ingredients = ingredients;
 
-                return View(recipes);
+
+                return View(selectQuery);
             }
         }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Recipe(Recipe_Model recipe)
+        public IActionResult Recipe(Recipe_Model model)
         {
             if (ModelState.IsValid)
             {
-                var selectedIngredientIds = recipe.SelectedIngredientIds.Split(',');
+                using (var dbConnection = _dbConnection)
+                {
 
 
-                var ingredients = _dbConnection.Query<string>(_sqlQueries.IngredientQuery, new { SelectedIngredientIds = selectedIngredientIds}).ToList();
+                    // Insert into REZEPT table
+                    var recipeInsertQuery = "INSERT INTO REZEPT (Rezeptname, Anleitung, Vegan, `Low-Carb`, Vegetarisch, Frutarisch, `High-Protein`) VALUES (@Rezeptname, @Anleitung, @Vegan, @LowCarb, @Vegetarisch, @Frutarisch, @HighProtein); SELECT LAST_INSERT_ID();";
+                    var recipeId = _dbConnection.ExecuteScalar<int>(recipeInsertQuery, model);
 
-                var zutaten = string.Join("; ", ingredients);
+                    // Insert into REZEPTZUTAT table
+                    foreach (var ingredientId in model.SelectedIngredients)
+                    {
+                        var recipeIngredientInsertQuery = "INSERT INTO REZEPTZUTAT (REZEPTNR, ZUTATENNR) VALUES (@REZEPTNR, @ZUTATENNR);";
+                        _dbConnection.Execute(recipeIngredientInsertQuery, new { REZEPTNR = recipeId, ZUTATENNR = ingredientId });
+                    }
+                }
 
-                recipe.ZUTATEN = zutaten;
-
-                _dbConnection.Execute(_sqlQueries.InsertQuery, recipe);
-
-                return RedirectToAction("Recipe");
+                return RedirectToAction("Index");
             }
 
-            return View(recipe);
-        }
+            // If the model is not valid, retrieve the ingredients and return to the form view
+            using (var dbConnection = _dbConnection)
+            {
 
-        public IActionResult DeleteRecipe(int REZEPTNR)
+
+                var selectQuery = _dbConnection.Query<Recipe_Model>("SELECT * FROM REZEPT").ToList();
+                var ingredients = _dbConnection.Query("SELECT ZUTATENNR, BEZEICHNUNG FROM ZUTAT").ToList();
+                ViewBag.selectQuery = selectQuery;
+                ViewBag.Ingredients = ingredients;
+            }
+
+            return View(model);
+        }
+    
+
+    public IActionResult DeleteRecipe(int REZEPTNR)
         {
             using (var dbConnection = _dbConnection)
             {
