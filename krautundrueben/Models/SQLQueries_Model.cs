@@ -10,10 +10,10 @@ namespace krautundrueben.Models
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public string DisplayAllQuery { get; } = @"
-                SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, K.HAUSNR AS KUNDEHAUSNR, K.PLZ AS KUNDEPLZ, 
-                K.ORT AS KUNDEORT, K.TELEFON AS KUNDETELEFON, K.EMAIL AS KUNDEEMAIL, L.LIEFERANTENNR,
-                L.LIEFERANTENNAME, L.STRASSE AS LIEFERANTSTRASSE, L.HAUSNR AS LIEFERANTHAUSNR, L.PLZ AS 
-                LIEFERANTPLZ, L.ORT AS LIEFERANTORT, L.TELEFON AS LIEFERANTTELEFON, L.EMAIL AS LIEFERANTEMAIL, z.*
+                SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, k.PLZ AS KUNDEPLZ, 
+                k.ORT AS KUNDEORT, k.TELEFON AS KUNDETELEFON, k.EMAIL AS KUNDEEMAIL, l.LIEFERANTENNR,
+                l.LIEFERANTENNAME, l.STRASSE AS LIEFERANTSTRASSE, l.HAUSNR AS LIEFERANTHAUSNR, l.PLZ AS 
+                LIEFERANTPLZ, l.ORT AS LIEFERANTORT, l.TELEFON AS LIEFERANTTELEFON, l.EMAIL AS LIEFERANTEMAIL, z.*
                 FROM BESTELLUNG b
 
                 INNER JOIN BESTELLUNGZUTAT bz ON b.BESTELLNR = bz.BESTELLNR
@@ -21,11 +21,11 @@ namespace krautundrueben.Models
                 INNER JOIN KUNDE k ON b.KUNDENNR = k.KUNDENNR
                 INNER JOIN LIEFERANT l ON z.LIEFERANT = l.LIEFERANTENNR
 
-                ORDER BY  b.BESTELLNR";
+                ORDER BY b.BESTELLNR";
 
         //Inner join um ALLE Felder zu zeigen, die etwas miteinander gemeinsam haben.
         public string GroupByCustomerQuery { get; } = @"
-                SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, K.PLZ AS KUNDEPLZ, 
+                SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, k.PLZ AS KUNDEPLZ, 
                 k.ORT AS KUNDEORT, k.TELEFON AS KUNDETELEFON, k.EMAIL AS KUNDEEMAIL, l.LIEFERANTENNR,
                 l.LIEFERANTENNAME, l.STRASSE AS LIEFERANTSTRASSE, l.HAUSNR AS LIEFERANTHAUSNR, l.PLZ AS 
                 LIEFERANTPLZ, l.ORT AS LIEFERANTORT, l.TELEFON AS LIEFERANTTELEFON, l.EMAIL AS LIEFERANTEMAIL, z.* FROM KUNDE k 
@@ -38,10 +38,10 @@ namespace krautundrueben.Models
                 ORDER BY b.BESTELLNR";
         //Left Join um ALLE Kunden zu zeigen. Auch die, die potentiell noch keine Bestellung aufgegeben haben.
 
-        public string GroupByOrderQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, K.HAUSNR AS KUNDEHAUSNR, K.PLZ AS KUNDEPLZ, 
-                K.ORT AS KUNDEORT, K.TELEFON AS KUNDETELEFON, K.EMAIL AS KUNDEEMAIL, L.LIEFERANTENNR,
-                L.LIEFERANTENNAME, L.STRASSE AS LIEFERANTSTRASSE, L.HAUSNR AS LIEFERANTHAUSNR, L.PLZ AS 
-                LIEFERANTPLZ, L.ORT AS LIEFERANTORT, L.TELEFON AS LIEFERANTTELEFON, L.EMAIL AS LIEFERANTEMAIL, z.* FROM BESTELLUNG b
+        public string GroupByOrderQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, k.PlZ AS kUNDEPlZ, 
+                k.ORT AS KUNDEORT, k.TELEFON AS KUNDETELEFON, k.EMAIL AS KUNDEEMAIL, l.LIEFERANTENNR,
+                l.LIEFERANTENNAME, l.STRASSE AS lIEFERANTSTRASSE, l.HAUSNR AS lIEFERANTHAUSNR, l.PLZ AS 
+                LIEFERANTPlZ, l.ORT AS LIEFERANTORT, l.TELEFON AS LIEFERANTTELEFON, l.EMAIL AS LIEFERANTEMAIL, z.* FROM BESTELLUNG b
 
                 LEFT JOIN KUNDE k ON b.KUNDENNR = k.KUNDENNR
                 LEFT JOIN BESTELLUNGZUTAT bz ON b.BESTELLNR = bz.BESTELLNR
@@ -52,10 +52,10 @@ namespace krautundrueben.Models
 
         //Left Join um ALLE Bestellungen zu zeigen. Auch die, die potentiell noch keinem Kunden zugewiesen sind.
 
-        public string GroupByDeliveryQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, K.HAUSNR AS KUNDEHAUSNR, K.PLZ AS KUNDEPLZ, 
-                K.ORT AS KUNDEORT, K.TELEFON AS KUNDETELEFON, K.EMAIL AS KUNDEEMAIL, L.LIEFERANTENNR,
-                L.LIEFERANTENNAME, L.STRASSE AS LIEFERANTSTRASSE, L.HAUSNR AS LIEFERANTHAUSNR, L.PLZ AS 
-                LIEFERANTPLZ, L.ORT AS LIEFERANTORT, L.TELEFON AS LIEFERANTTELEFON, L.EMAIL AS LIEFERANTEMAIL, z.* FROM LIEFERANT l
+        public string GroupByDeliveryQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, k.PLZ AS KUNDEPLZ, 
+                k.ORT AS KUNDEORT, k.TELEFON AS KUNDETELEFON, k.EMAIL AS KUNDEEMAIL, l.LIEFERANTENNR,
+                l.LIEFERANTENNAME, l.STRASSE AS LIEFERANTSTRASSE, l.HAUSNR AS LIEFERANTHAUSNR, l.PLZ AS 
+                LIEFERANTPLZ, l.ORT AS LIEFERANTORT, l.TELEFON AS LIEFERANTTELEFON, l.EMAIL AS LIEFERANTEMAIL, z.* FROM LIEFERANT l
 
                 LEFT JOIN ZUTAT z ON l.LIEFERANTENNR = z.LIEFERANT
                 LEFT JOIN BESTELLUNGZUTAT bz ON z.ZUTATENNR = bz.ZUTATENNR
@@ -66,10 +66,10 @@ namespace krautundrueben.Models
 
         //Left Join um ALLE Lieferanten zu zeigen. Auch die, denen potentiell kein Auftrag zugewiesen ist.
 
-        public string GroupByIngredientQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, K.HAUSNR AS KUNDEHAUSNR, K.PLZ AS KUNDEPLZ, 
-                K.ORT AS KUNDEORT, K.TELEFON AS KUNDETELEFON, K.EMAIL AS KUNDEEMAIL, L.LIEFERANTENNR,
-                L.LIEFERANTENNAME, L.STRASSE AS LIEFERANTSTRASSE, L.HAUSNR AS LIEFERANTHAUSNR, L.PLZ AS 
-                LIEFERANTPLZ, L.ORT AS LIEFERANTORT, L.TELEFON AS LIEFERANTTELEFON, L.EMAIL AS LIEFERANTEMAIL, z.* FROM ZUTAT z
+        public string GroupByIngredientQuery { get; } = @"SELECT b.*, bz.*, k.NACHNAME, k.VORNAME, k.GEBURTSDATUM, k.STRASSE AS KUNDESTRASSE, k.HAUSNR AS KUNDEHAUSNR, k.PLZ AS KUNDEPLZ, 
+                k.ORT AS KUNDEORT, k.TELEFON AS KUNDETELEFON, k.EMAIL AS KUNDEEMAIL, l.LIEFERANTENNR,
+                l.LIEFERANTENNAME, l.STRASSE AS LIEFERANTSTRASSE, l.HAUSNR AS LIEFERANTHAUSNR, l.PLZ AS 
+                LIEFERANTPLZ, l.ORT AS LIEFERANTORT, l.TELEFON AS LIEFERANTTELEFON, l.EMAIL AS LIEFERANTEMAIL, z.* FROM ZUTAT z
 
                 LEFT JOIN LIEFERANT l ON z.LIEFERANT = l.LIEFERANTENNR
                 LEFT JOIN BESTELLUNGZUTAT bz ON z.ZUTATENNR = bz.ZUTATENNR
@@ -105,10 +105,10 @@ namespace krautundrueben.Models
                 ORDER BY Ingredient_Count DESC";
 
         //Lieferanten nach Zutatenangebot sortiert.
-        public string SalesPerDate { get; } = @"SELECT FORMAT(BESTELLDATUM, 'dd.MM.yyyy') AS SalesPerDateDate, SUM(RECHNUNGSBETRAG) AS SalesPerDateSales
+        public string SalesPerDate { get; } = @"SELECT DATE_FORMAT(BESTELLDATUM, '%d.%m.%Y') AS SalesPerDateDate, SUM(RECHNUNGSBETRAG) AS SalesPerDateSales
                 FROM BESTELLUNG
-                GROUP BY FORMAT(BESTELLDATUM, 'dd.MM.yyyy')
-                ORDER BY FORMAT(BESTELLDATUM, 'dd.MM.yyyy')";
+                GROUP BY DATE_FORMAT(BESTELLDATUM, '%d.%m.%Y')
+                ORDER BY DATE_FORMAT(BESTELLDATUM, '%d.%m.%Y')";
 
         //Verkäufe über Zeit.
 
@@ -121,7 +121,11 @@ namespace krautundrueben.Models
 
         //Insert Query zum Einfügen neuer Rezepte in die Datenbank.
         public string IngredientQuery { get; } = @"SELECT BEZEICHNUNG FROM ZUTAT WHERE ZUTATENNR IN @SelectedIngredientIds";
+
+        //Query zum Auswählen meherer Zutaten 
         public string DeleteQuery { get; } = @"DELETE FROM REZEPTE WHERE REZEPTID = @RecipeId";
+
+        //Delete Query zum Löschen von Rezepten in der Datenbank.
     }
 
 }

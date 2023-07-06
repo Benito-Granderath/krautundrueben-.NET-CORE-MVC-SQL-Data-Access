@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using MySql;
+using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddTransient<IDbConnection>((sp) => new SqlConnection(connectionString));
+builder.Services.AddTransient<IDbConnection>((sp) => new MySqlConnection(connectionString));
 
 var app = builder.Build();
 
