@@ -89,11 +89,9 @@ namespace krautundrueben.Controllers
                 {
 
 
-                    // Insert into REZEPT table
                     var recipeInsertQuery = "INSERT INTO REZEPT (Rezeptname, Anleitung, Vegan, `Low-Carb`, Vegetarisch, Frutarisch, `High-Protein`) VALUES (@Rezeptname, @Anleitung, @Vegan, @LowCarb, @Vegetarisch, @Frutarisch, @HighProtein); SELECT LAST_INSERT_ID();";
                     var recipeId = _dbConnection.ExecuteScalar<int>(recipeInsertQuery, model);
 
-                    // Insert into REZEPTZUTAT table
                     foreach (var ingredientId in model.SelectedIngredients)
                     {
                         var recipeIngredientInsertQuery = "INSERT INTO REZEPTZUTAT (REZEPTNR, ZUTATENNR) VALUES (@REZEPTNR, @ZUTATENNR);";
@@ -104,7 +102,6 @@ namespace krautundrueben.Controllers
                 return RedirectToAction("Index");
             }
 
-            // If the model is not valid, retrieve the ingredients and return to the form view
             using (var dbConnection = _dbConnection)
             {
 
@@ -124,6 +121,7 @@ namespace krautundrueben.Controllers
             using (var dbConnection = _dbConnection)
             {
                 dbConnection.Open();
+                dbConnection.Execute(_sqlQueries.DeleteQuery2, new { RecipeId = REZEPTNR });
                 dbConnection.Execute(_sqlQueries.DeleteQuery, new { RecipeId = REZEPTNR });
             }
 

@@ -115,15 +115,14 @@ namespace krautundrueben.Models
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //      ANDERE QUERIES
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public string InsertQuery { get; } = @"INSERT INTO REZEPTE (REZEPTBEZEICHNUNG, ANLEITUNG, KALORIEN, PROTEIN, 
-                ALLERGIEN, KOHLENHYDRATE, ZUTATEN, ISVEGAN) VALUES (@REZEPTBEZEICHNUNG, @ANLEITUNG, @KALORIEN, @PROTEIN, @ALLERGIEN, @KOHLENHYDRATE, @ZUTATEN, @ISVEGAN) UPDATE REZEPTE 
-                SET ALLERGIEN = NULLIF(ALLERGIEN, '')";
-
+        public string InsertQuery { get; } = @"INSERT INTO REZEPT (Rezeptname, Anleitung, Vegan, `Low-Carb`, Vegetarisch, Frutarisch, `High-Protein`) VALUES (@Rezeptname, @Anleitung, @Vegan, @LowCarb, @Vegetarisch, @Frutarisch, @HighProtein); SELECT LAST_INSERT_ID()";
         //Insert Query zum Einfügen neuer Rezepte in die Datenbank.
         public string IngredientQuery { get; } = @"SELECT BEZEICHNUNG FROM ZUTAT WHERE ZUTATENNR IN @SelectedIngredientIds";
 
         //Query zum Auswählen meherer Zutaten 
-        public string DeleteQuery { get; } = @"DELETE FROM REZEPTE WHERE REZEPTID = @RecipeId";
+        public string DeleteQuery { get; } = @"DELETE FROM REZEPT WHERE REZEPTNR = @RecipeId";
+        public string DeleteQuery2 { get; } = @"DELETE FROM REZEPTZUTAT WHERE REZEPTNR = @RecipeId";
+
 
         //Delete Query zum Löschen von Rezepten in der Datenbank.
     }
